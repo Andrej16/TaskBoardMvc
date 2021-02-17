@@ -1,0 +1,36 @@
+﻿@model List<TaskBoardMvc.Models.WorkItem>
+@{
+    ViewBag.Title = "Whats New";
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="navbar-collapse collapse">
+    @CreateWorkList(Model)
+</div>
+
+@section Address{
+    <address>
+        One Way<br />
+        Kyiv, BK 98052-6399<br />
+        <abbr title="Phone">P:</abbr>
+        (095)-710-75-36
+    </address>
+
+    <address>
+        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    </address>
+}
+
+@helper CreateWorkList(List<TaskBoardMvc.Models.WorkItem> items)
+{
+    <ol>
+        @foreach (var item in items)
+        {
+            <li>
+                @item.TfsName
+                <a class="btn btn-default" target="_blank" href="http://callisto:8080/tfs/AIS/AIS_PROJECTv3/_workitems/edit/@item.TfsNum">See more &raquo;</a>
+            </li>
+        }
+    </ol>
+}

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<TaskBoardMvc.Models.WorkItem>
+@{
+    ViewBag.Title = "Index";
+}
+@*см. изменения в _Layout.cshtml*@
+@section styles
+{
+    <link href="~/Content/GridStyles.css" rel="stylesheet" />
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "WorkItems", FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>Find</td>
+                <td>@Html.TextBox("SearchString")</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Filter" style="width:100%" /></td>
+            </tr>
+        </table>
+    }
+</p>
+<table class="grid">
+    <tr class="header">
+        <th>
+            @Html.DisplayNameFor(model => model.TfsNum)
+        </th>
+        <th style="width:100px">
+            @Html.DisplayNameFor(model => model.TfsName)
+        </th>
+        <th style="width:100px">
+            @Html.DisplayNameFor(model => model.UsedItems_Changed)
+        </th>
+        <th style="width:100px">
+            @Html.DisplayNameFor(model => model.UsedItems_New)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TfsUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BackupId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Updated)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="grid-row">
+            <td>
+                @Html.DisplayFor(modelItem => item.TfsNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TfsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsedItems_Changed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsedItems_New)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TfsUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BackupId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

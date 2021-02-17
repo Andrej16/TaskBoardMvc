@@ -1,0 +1,74 @@
+﻿@model TaskBoardMvc.Models.WorkItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TfsNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TfsNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TfsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TfsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsedItems_Changed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsedItems_Changed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsedItems_New)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsedItems_New)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TfsUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TfsUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BackupId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BackupId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

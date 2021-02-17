@@ -1,0 +1,33 @@
+﻿@model List<dynamic>
+@{
+    ViewBag.Title = "Отбор договров";
+    WebGrid grid = new WebGrid(Model);
+}
+@section styles
+{
+    <link href="~/Content/GridStyles.css" rel="stylesheet" />
+}
+<h2>Поиск договоров</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm(FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>Find</td>
+                <td>@Html.TextBox("id")</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Filter" style="width:100%" /></td>
+            </tr>
+        </table>
+    }
+</p>
+@grid.GetHtml(tableStyle: "grid", headerStyle: "header", rowStyle: "grid-row", alternatingRowStyle: "alt-row", footerStyle: "footer",
+    htmlAttributes: new { cellpadding = "6px", cellspacing = "10px", border = "5px" },
+    columns: grid.Columns(
+        grid.Column(columnName: "AG_ID", header: "Id"),
+        grid.Column(columnName: "AG_NUM", header: "Номер договора")
+    ))
+
+

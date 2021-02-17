@@ -1,0 +1,35 @@
+﻿@model List<TaskBoardMvc.Models.WorkItem>
+@{
+    ViewBag.Title = "WorkItemsGrid";
+    WebGrid grid = new WebGrid(Model);
+}
+@*см. изменения в _Layout.cshtml*@
+@section styles
+{
+    <link href="~/Content/GridStyles.css" rel="stylesheet" />
+}
+<h2>WorkItemsGrid</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm(FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>Find</td>
+                <td>@Html.TextBox("SearchString")</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Filter" style="width:100%" /></td>
+            </tr>
+        </table>
+    }
+</p>
+@grid.GetHtml(tableStyle: "grid", headerStyle: "header", rowStyle: "grid-row", alternatingRowStyle: "alt-row", footerStyle: "footer",
+    htmlAttributes: new { cellpadding = "6px", cellspacing = "10px", border = "5px" },
+    columns: grid.Columns(
+        grid.Column(columnName: "TfsNum", header: "Номер задачи"),
+        grid.Column(columnName: "TfsName", header: "Название задачи"),
+        grid.Column(columnName: "UsedItems_Changed", header: "Изменения"),
+        grid.Column(columnName: "UsedItems_New", header: "Новые обьекты")
+    ))
